@@ -26,12 +26,22 @@
         "react",
         "react-hooks",
         "@typescript-eslint",
-        "prettier"
+        "eslint-plugin-tsdoc",
+        "prettier",
     ],
     "settings": {
         "react": {
           "version": "detect"
-        }
+        },
+        "import/resolver": {
+            "node": {
+              "paths": ["src"],
+              "extensions": [".js", ".ts", ".d.ts", ".jsx", ".tsx"]
+            }
+          }
     },
-    "rules": {}
+    "rules": {
+        "tsdoc/syntax": "warn",
+        "react-hooks/exhaustive-deps": "off",
+    }
 }

@@ -1,6 +1,14 @@
 import React from 'react';
-import styles from './index.module.scss';
+import { MainPage } from 'pages/Main';
+import { UsersProvider } from 'providers/UsersProvider';
 
+/**
+ * @description This is the main component of the application, located at the top level
+ */
 export const App = () => {
-  return <h1 className={styles.title}>Hello world!!!</h1>;
+  return (
+    <UsersProvider>
+      <MainPage />
+    </UsersProvider>
+  );
 };
