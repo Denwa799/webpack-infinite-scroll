@@ -5,8 +5,7 @@ import { IUser } from 'models/IUser';
  * @description This entity describes the content in the user context
  */
 export interface IUsersContext {
-  users: IUser[] | null;
-  loadedMoreUsers: IUser[] | null;
+  users: IUser[];
   usersIsLoading: boolean;
   moreUsersIsLoading: boolean;
   fetchUsersError: string | null;

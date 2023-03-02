@@ -16,10 +16,10 @@ export const UsersContext = createContext<IUsersContext>({} as IUsersContext);
 
 /**
  * @description This is users provider created to users store
+ * @return {ReactElement} - Returns the component that accesses data from the user provider
  */
 export const UsersProvider: FC<IUsersProvider> = ({ children }) => {
-  const [users, setUsers] = useState<IUser[] | null>(null);
-  const [loadedMoreUsers, setLoadedMoreUsers] = useState<IUser[] | null>(null);
+  const [users, setUsers] = useState<IUser[]>([]);
 
   const [usersIsLoading, setUsersIsLoading] = useState(false);
   const [moreUsersIsLoading, setMoreUsersIsLoading] = useState(false);
@@ -27,7 +27,7 @@ export const UsersProvider: FC<IUsersProvider> = ({ children }) => {
 
   const usersPath = `${process.env.REACT_APP_API}`;
 
-  const fetchUsers = useCallback(async (page = 1, results = 10) => {
+  const fetchUsers = useCallback(async (page = 1, results = 50) => {
     setUsersIsLoading(true);
     setFetchUsersError(null);
     try {
@@ -41,12 +41,12 @@ export const UsersProvider: FC<IUsersProvider> = ({ children }) => {
     }
   }, []);
 
-  const fetchMoreUsers = useCallback(async (page = 1, results = 10) => {
+  const fetchMoreUsers = useCallback(async (page = 1, results = 50) => {
     setMoreUsersIsLoading(true);
     setFetchUsersError(null);
     try {
       const response = await getService(usersPath, { page, results });
-      setLoadedMoreUsers(response.results);
+      setUsers((prev) => [...prev, ...response.results]);
     } catch (error) {
       console.log(error);
       setFetchUsersError('Ошибка загрузки списка пользователей');
@@ -58,20 +58,13 @@ export const UsersProvider: FC<IUsersProvider> = ({ children }) => {
   const value = useMemo(
     () => ({
       users,
-      loadedMoreUsers,
       usersIsLoading,
       moreUsersIsLoading,
       fetchUsersError,
       fetchUsers,
       fetchMoreUsers,
     }),
-    [
-      users,
-      loadedMoreUsers,
-      usersIsLoading,
-      moreUsersIsLoading,
-      fetchUsersError,
-    ]
+    [users, usersIsLoading, moreUsersIsLoading, fetchUsersError]
   );
 
   return (

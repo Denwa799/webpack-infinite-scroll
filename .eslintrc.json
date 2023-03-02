@@ -26,8 +26,7 @@
         "react",
         "react-hooks",
         "@typescript-eslint",
-        "eslint-plugin-tsdoc",
-        "prettier",
+        "prettier"
     ],
     "settings": {
         "react": {
@@ -41,7 +40,6 @@
           }
     },
     "rules": {
-        "tsdoc/syntax": "warn",
-        "react-hooks/exhaustive-deps": "off",
+        "react-hooks/exhaustive-deps": "off"
     }
 }

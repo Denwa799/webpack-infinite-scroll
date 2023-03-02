@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 
 /**
  * @description This is the app user card UI component
+ * @return {ReactElement} - Returns the app user card component
  */
 export const AppUserCard: FC<IAppUserCard> = ({ name, photo, email }) => {
   return (

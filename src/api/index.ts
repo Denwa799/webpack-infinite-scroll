@@ -3,7 +3,7 @@
  *
  * @param {string} url - address for request
  * @param {object} params - query params
- * @returns {Promise<any>} - return json
+ * @return {Promise<any>} - return json
  */
 export const getService = async (url: string, params = {}) => {
   const searchParams = new URLSearchParams(params);

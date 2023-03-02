@@ -1,0 +1,17 @@
+@import "constants/variables";
+
+.AppInfiniteScroll {
+    height: 98vh;
+    overflow-y: scroll;
+
+    @include scrollbar();
+}
+
+.itemsBlock {
+    position: relative;
+}
+
+.itemContainer {
+    position: absolute;
+    width: 100%;
+}
